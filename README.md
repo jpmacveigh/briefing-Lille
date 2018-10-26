@@ -1,5 +1,5 @@
 # briefing
-Briefing AC Issoudun (LFEK)
+Briefing Lille-Planeurs (LFQO)
 
 
 Objectif
@@ -9,7 +9,8 @@ Mettre à disposition briefing vélivole où la récupération des données (MTO
 
 Base de travail
 ---------------
-Travail se basant sur ce qu'on peut trouver sur http://www.volavoile.net/index.php?showtopic=12194 et adapté pour Issoudun LFEK.
+Travail se basant sur ce qu'on peut trouver sur http://www.volavoile.net/index.php?showtopic=12194 et adapté pour Lille-Marcq LFQO à partir du travail réalisé
+par l'AC d'Issoudun pour LFEK.
 
 
 Source des données

@@ -48,7 +48,6 @@
 				var listeAeros = [
 					{ nom: 'Proche LFQO',
 					  liste: ['LFQO','LFQT','LFQQ','LFQN','LFQL','LFAV','LFQD','LFQS','LFQJ']},
-					
 					{ nom: 'Au sud de LFQO',
 					  liste: ['LFAQ','LFAY','LFYG','LFAG','LFOW','LFOI','LFJS','LFAD']},
 		
@@ -203,9 +202,10 @@
 					function frontSuccessCallback(json) {
 						$.each(json.Product, function(i, obj) {
 							var validFromDate = moment(obj.ValidFrom).utc().format('DD-MM-YYYY HH:mm');
+							var nomJour=nomDuJour(moment(obj.ValidFrom).utc());
 							$structure = '<section>'
 										+ '<h4>Situation générale pression en surface et fronts</h4>'
-										+ '<a href="https://www.metoffice.gov.uk/public/weather/surface-pressure/" target="_blank">pour le ' + validFromDate + ' UTC</a>'
+										+ '<a href="https://www.metoffice.gov.uk/public/weather/surface-pressure/" target="_blank">pour le ' + nomJour+ ' '+ validFromDate + ' UTC</a>'
 										+ '<a href="https://www.metoffice.gov.uk/public/weather/surface-pressure/" target="_blank"><image class="noborder" src="' + obj.ProductURI + '" height="601" width="891"></a>'
 										+ '</section>';
 							$('#frontSection').append($structure);
@@ -572,6 +572,13 @@
 			autoSlide: 5000
 		});
 		Reveal.toggleAutoSlide();
+	</script>
+	<script>
+		function nomDuJour (date){
+			var jours = new Array('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
+			var numJour = new Date(date).getDay();
+			return jours[numJour];
+		}
 	</script>
 </body>
 </html>
