@@ -242,7 +242,9 @@
 			
 			<section>
           		<h4>Radar pluie</h4>
-          		<img src="http://www.meteo60.fr/radars/animation-radar-france.gif" style="height:620px;">
+          		<!--<img src="http://www.meteo60.fr/radars/animation-radar-france.gif" style="height:620px;">-->
+        	    <!--<img src="http://data.meteo-villes.com/pluie.php?zoom=7&lat=50.6&lon=3.0">-->
+        	    <iframe src="http://data.meteo-villes.com/pluie.php?zoom=7&lat=50.6&lon=3.0" width="845" height="615"></iframe>
         	</section>
 			
 			<!-- SONDAGES METEOCIEL AROME -->
@@ -364,6 +366,9 @@
 							fl = delta*1 + 1371*1;
 							$("#FL45").text(Math.round(fl));
 							
+							fl = delta*1 + 1676*1;
+							$("#FL55").text(Math.round(fl));
+							
 							fl = delta*1 + 1981*1;
 							$("#FL65").text(Math.round(fl));
 							
@@ -395,6 +400,10 @@
 							<tr>
 								<td>FL45</td>
 								<td><span id='FL45'></span> m</td>
+							</tr>
+								<tr>
+								<td>FL55</td>
+								<td><span id='FL55'></span> m</td>
 							</tr>
 							<tr>
 								<td>FL65</td>
