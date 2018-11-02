@@ -186,7 +186,7 @@
 				</section>
 			</section>
 			<section>
-				<h4>Phénomènes dangereux à serveiller</h4>
+				<h4>Phénomènes dangereux à surveiller</h4>
      			<iframe src="http://www.vigimeteo.com/" width="95%" height="700"><p>Your browser does not support iframes.</p></iframe>
 			</section>
 			<!-- Carte Géopotentiel et tourbillon à 500 Hpa -->
@@ -391,12 +391,18 @@
 							fl = delta*1 + 3505*1;
 							$("#FL115").text(Math.round(fl));
 						});
+						var rep=getSunsetToday(50.3,3.06); // appel pour Lille
+						var sunset=""+rep.heureSunset + ":" + rep.minuteSunset + "";
+						$("#sunset").val(sunset);
+						$("#sunset").trigger("change");
+						
 					});
 
 					function updateQNH(qnh) {
 							$("#qnh").val(qnh);
 							$("#qnh").trigger("change");
 					}
+					
 				</script>
 
 				<h4>Table des Niveaux de Vol</h4>
@@ -434,7 +440,7 @@
 						</table>
 					</div>
 					<div style="display:block; margin:10px; text-align:left">
-					   <p>SS : <input type="text" id="ss" class="big_input_qnh" > </p>
+					   <p>Coucher du soleil (heure locale) : <input type="text" id="sunset" class="big_input_qnh" > </p>
 					</div>
 				</div>
 			</section>
@@ -601,6 +607,19 @@
 			var jours = new Array('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
 			var numJour = new Date(date).getDay();
 			return jours[numJour];
+		}
+		function  getSunsetToday(lati,longi){  // Renvoi l'heure locale du coucher du solei du lieu (longi,lati)
+			var http = new XMLHttpRequest();
+			var rep;
+			var url="https://api.sunrise-sunset.org/json?lat="+lati+"&lng="+longi+"&date=today&formatted=0";
+			http.onload = function() {
+				var sunsetUTC=JSON.parse(http.responseText).results.sunset;
+				var date=new Date(sunsetUTC);
+				rep={heureSunset: date.getHours(),minuteSunset: date.getMinutes()};
+			};
+			http.open("GET", url,false);
+			http.send();
+			return (rep);
 		}
 	</script>
 </body>
