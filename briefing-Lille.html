@@ -190,6 +190,30 @@
      			<iframe src="http://www.vigimeteo.com/" width="95%" height="700"><p>Your browser does not support iframes.</p></iframe>
 			</section>
 			<!-- Carte Géopotentiel et tourbillon à 500 Hpa -->
+			<section id="geopotSection"></section>
+			<script>
+				var geopotURL=[
+					"https://static.meteoblue.com/pub/nems12/maps/00VHG50_012.jpg",
+					"https://static.meteoblue.com/pub/nems12/maps/00VHG50_036.jpg",
+					"https://static.meteoblue.com/pub/nems12/maps/00VHG50_060.jpg",
+					"https://static.meteoblue.com/pub/nems12/maps/00VHG50_084.jpg",
+					"https://static.meteoblue.com/pub/nems12/maps/00VHG50_108.jpg"
+					];
+				function geopotSuccessCallback() {
+						for (var i=0;i<geopotURL.length;i++){
+							$structure = '<section>'
+										+ '<h4>"Géopotentiel et tourbillon relatif à 500mb "</h4>'
+										+ '<img src='+geopotURL[i]+' style="height:640px;">'
+										+ '</section>';
+							$('#geopotSection').append($structure);
+						};
+					}
+				function geopotFailureCallback(){};
+				$(document).ready(function() {
+					ajaxAciFrontApiCallWithCallback(geopotSuccessCallback, geopotFailureCallback);
+				});
+			</script>
+			<!--
 			<section>
           		<h4>Géopotentielle à 500mb aujourd'hui</h4>
          		 <img src="https://static.meteoblue.com/pub/nems12/maps/00VHG50_012.jpg" style="height:620px;">
@@ -199,7 +223,7 @@
           		<h4>Géopotentielle à 500mb demain</h4>
           		<img src="https://static.meteoblue.com/pub/nems12/maps/00VHG50_036.jpg" style="height:620px;">
         	</section>
-			
+			-->
 			<!-- CARTE CHAMP DE PRESSION ET FRONTS -->
 			<section id="frontSection">
 				<script>
@@ -375,10 +399,10 @@
 		
 							delta = (qnh_value - pMer) * mhPa;
 							$("#delta").text(Math.round(delta));
-							
+							/*
 							fl = delta*1 + 1371*1;
 							$("#FL45").text(Math.round(fl));
-							
+							*/
 							fl = delta*1 + 1676*1;
 							$("#FL55").text(Math.round(fl));
 							
@@ -416,10 +440,12 @@
 								<th>Niveau de vol</th>
 								<th>Altitude QNH</th>
 							</tr>
+							<!--
 							<tr>
 								<td>FL45</td>
 								<td><span id='FL45'></span> m</td>
 							</tr>
+							-->
 								<tr>
 								<td>FL55</td>
 								<td><span id='FL55'></span> m</td>
