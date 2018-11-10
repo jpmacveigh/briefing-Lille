@@ -416,7 +416,7 @@
 							$("#FL115").text(Math.round(fl));
 						});
 						var rep=getSunsetToday(50.3,3.06); // appel pour Lille
-						var sunset=""+rep.heureSunset + ":" + rep.minuteSunset + "";
+						var sunset=""+rep.heureSunset + ":" + str_pad(rep.minuteSunset) + "";
 						$("#sunset").val(sunset);
 						$("#sunset").trigger("change");
 						
@@ -483,9 +483,9 @@
 		
 				var sectionNotam = function(listelisteAeros){
 					var modeAffichage = ['RESUME','COMPLET'];
-					for(j=0;j<listelisteAeros.length;j++){
+					for(var j=0;j<listelisteAeros.length;j++){
 						document.write('<section>');
-						for(k=0; k<modeAffichage.length; k++){
+						for(var k=0; k<modeAffichage.length; k++){
 							document.write(''
 							+'                <section>'
 							+'                    <h4>Notams  <b>'+listelisteAeros[j].nom+'</b>  '+modeAffichage[k]+'</h4>'
@@ -532,9 +532,9 @@
 				}
 				var sectionNotamFIR = function(listelisteFIR){
 					var modeAffichage = ['RESUME','COMPLET'];
-					for(j=0;j<listelisteFIR.length;j++){
+					for(var j=0;j<listelisteFIR.length;j++){
 					document.write('<section>');
-					for(k=0; k<modeAffichage.length; k++){
+					for(var k=0; k<modeAffichage.length; k++){
 						document.write(''
 						+' <section>'
 						+' <h4>Notams <b>'+listelisteFIR[j].nom+'</b> '+modeAffichage[k]+'</h4>'
@@ -646,6 +646,9 @@
 			http.open("GET", url,false);
 			http.send();
 			return (rep);
+		}
+		function str_pad(n) {
+    		return String("00" + n).slice(-2);
 		}
 	</script>
 </body>
