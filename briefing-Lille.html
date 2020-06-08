@@ -164,7 +164,7 @@
 						});
 					</script>
 					<h2></br>Briefing Lille-Planeurs</br></br></h2>
-					<h3>METEO    &nbsp;&nbsp;&amp;&nbsp;&nbsp;  Information Aéronautique</h3>
+					<h3>METEO    &nbsp;&nbsp;&amp;&nbsp;&nbsp;  Informations Aéronautiques</h3>
 					<br>
 					<h3 id="dateTitleDay"></br></h3>
 					<h3 id="dateTitleTime" style="font-family: monospace;"></h3>
@@ -333,18 +333,22 @@
 					}
 					function aciTafMetarCallback(json, reportType) {
 						$.each(json, function(i, obj) {
+							console.log(obj)
 							var raw = obj.raw_text;
 							var station = obj.station_id;
 							if (reportType == 'metar') {
 								if(station == 'LFQQ' || station == 'LFAQ' || station == 'LFAC') {
 									$( "<p>" ).text( raw ).appendTo( "#metar"+station );
-								} else {
+								} 
+								else {
 									$( "<p>" ).text( raw ).appendTo( "#metarResult" );
 								}
-							} else {
+							} 
+							else {
 								if(station == 'LFQQ' || json.Station == 'LFAQ') {
 									$( "<p>" ).text( raw ).appendTo( "#taf"+station );
-								} else {
+								}
+								else {
 									$( "<p>" ).text( raw ).appendTo( "#tafResult" );
 								}
 							}
@@ -366,13 +370,14 @@
 					}
 					$(document).ready(function() {
 						lireMetar(['LFQQ'], aciQnhCallback); // reference QNH du jour = Lille
-						lireMetar(['LFQQ','LFAC','LFAQ','EBCV'], aciTafMetarCallback, tafMetarFailureCallback);
-						lireTaf(['LFQQ','LFAQ','EBCV'], aciTafMetarCallback, tafMetarFailureCallback);
+						lireMetar(['LFQQ','LFAC','LFAQ'], aciTafMetarCallback, tafMetarFailureCallback);
+						lireTaf(['LFQQ','LFAQ'], aciTafMetarCallback, tafMetarFailureCallback);
 					});
 				</script>
 					<!-- <div id="qnhResult"></div> -->
 					<div id="tafMetarContainer" class="metartaf">
 						<div id="metarLFQQ"></div>
+						<div id="metarLFAC"></div>
 						<div id="metarLFAQ"></div>
 						<div id="metarEBCV"></div>
 						<div id="metarResult"></div>
