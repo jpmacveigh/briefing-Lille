@@ -164,7 +164,7 @@
 						});
 					</script>
 					<h2></br>Briefing Lille-Planeurs</br></br></h2>
-					<h3>METEO    &nbsp;&nbsp;&amp;&nbsp;&nbsp;  Information Aeronautique</h3>
+					<h3>METEO    &nbsp;&nbsp;&amp;&nbsp;&nbsp;  Information Aéronautique</h3>
 					<br>
 					<h3 id="dateTitleDay"></br></h3>
 					<h3 id="dateTitleTime" style="font-family: monospace;"></h3>
@@ -187,7 +187,13 @@
 			</section>
 			<section>
 				<h4>Phénomènes dangereux à surveiller</h4>
+     			<!--
      			<iframe src="http://www.vigimeteo.com/" width="95%" height="700"><p>Your browser does not support iframes.</p></iframe>
+     			-->
+     			<!--
+     			<iframe src="https://vigilance.meteofrance.fr/" width="95%" height="700"><p>Your browser does not support iframes.</p></iframe>
+     			-->
+     			<iframe src="https://vigilance.meteofrance.fr/fr/widget-vigilance/vigilance" width="302" height="122" frameborder="0"><p>Your browser does not support iframes.</p></iframe>
 			</section>
 			<!-- Carte Géopotentiel et tourbillon à 500 Hpa -->
 			<section id="geopotSection"></section>
@@ -330,7 +336,7 @@
 							var raw = obj.raw_text;
 							var station = obj.station_id;
 							if (reportType == 'metar') {
-								if(station == 'LFQQ' || station == 'LFAQ') {
+								if(station == 'LFQQ' || station == 'LFAQ' || station == 'LFAC') {
 									$( "<p>" ).text( raw ).appendTo( "#metar"+station );
 								} else {
 									$( "<p>" ).text( raw ).appendTo( "#metarResult" );
@@ -360,7 +366,7 @@
 					}
 					$(document).ready(function() {
 						lireMetar(['LFQQ'], aciQnhCallback); // reference QNH du jour = Lille
-						lireMetar(['LFQQ','LFAQ','EBCV'], aciTafMetarCallback, tafMetarFailureCallback);
+						lireMetar(['LFQQ','LFAC','LFAQ','EBCV'], aciTafMetarCallback, tafMetarFailureCallback);
 						lireTaf(['LFQQ','LFAQ','EBCV'], aciTafMetarCallback, tafMetarFailureCallback);
 					});
 				</script>
@@ -380,8 +386,8 @@
 		<!-- Espaces aériens belges   -->
 			<section>
 				<h4>Espaces aériens belges</h4>
-				<iframe src="https://www.lvzc.be/index.php/secretariaat/luchtruim/lfa-golf-status" height="640" width="1200"></iframe>
-				
+				<!--	<iframe src="https://www.lvzc.be/index.php/secretariaat/luchtruim/lfa-golf-status" height="640" width="1200"></iframe> -->
+				<iframe src="https://www.lvzc.be/index.php/luchtruim/lfa-golf-status" height="640" width="1200"></iframe>
 			</section>
 
 		<!-- un tableau des FL du jour en fonction du QNH, et en dessous la page que j'utilise pour determiner le qnh du jour, les heures de coucher du soleil etc etc -->
