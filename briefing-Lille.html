@@ -401,6 +401,7 @@
 			<section>
 				<script>
 					function round5(x){
+						// http://liberiste.com/wp-content/uploads/2019/12/tableau-de-conversion-niveau-de-vol-libre.jpg
 						return Math.ceil(x/5)*5;
 					}
 		
@@ -421,8 +422,14 @@
 							fl = delta*1 + 1676*1;
 							$("#FL55").text(Math.round(fl));
 							
+							fl = delta*1 + 1827*1;
+							$("#FL60").text(Math.round(fl));
+							
 							fl = delta*1 + 1981*1;
 							$("#FL65").text(Math.round(fl));
+							
+							fl = delta*1 + 2131*1;
+							$("#FL70").text(Math.round(fl));
 							
 							fl = delta*1 + 2284*1;
 							$("#FL75").text(Math.round(fl));
@@ -461,13 +468,21 @@
 								<td><span id='FL45'></span> m</td>
 							</tr>
 							-->
-								<tr>
+							<tr>
 								<td>FL55</td>
 								<td><span id='FL55'></span> m</td>
 							</tr>
 							<tr>
+								<td>FL60</td>
+								<td><span id='FL60'></span> m</td>
+							</tr>
+							<tr>
 								<td>FL65</td>
 								<td><span id='FL65'></span> m</td>
+							</tr>
+							<tr>
+								<td>FL70</td>
+								<td><span id='FL70'></span> m</td>
 							</tr>
 							<tr>
 								<td>FL75</td>
