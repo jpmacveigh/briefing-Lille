@@ -415,10 +415,10 @@
 		
 							delta = (qnh_value - pMer) * mhPa;
 							$("#delta").text(Math.round(delta));
-							/*
-							fl = delta*1 + 1371*1;
-							$("#FL45").text(Math.round(fl));
-							*/
+							
+							fl = delta*1 + 1522*1;
+							$("#FL50").text(Math.round(fl));
+							
 							fl = delta*1 + 1676*1;
 							$("#FL55").text(Math.round(fl));
 							
@@ -433,9 +433,10 @@
 							
 							fl = delta*1 + 2284*1;
 							$("#FL75").text(Math.round(fl));
-							
+							/*
 							fl = delta*1 + 3505*1;
 							$("#FL115").text(Math.round(fl));
+							*/
 						});
 						var rep=getSunsetToday(50.3,3.06); // appel pour Lille
 						var sunset=""+rep.heureSunset + ":" + str_pad(rep.minuteSunset) + "";
@@ -462,12 +463,10 @@
 								<th>Niveau de vol</th>
 								<th>Altitude QNH</th>
 							</tr>
-							<!--
 							<tr>
-								<td>FL45</td>
-								<td><span id='FL45'></span> m</td>
+								<td>FL50</td>
+								<td><span id='FL50'></span> m</td>
 							</tr>
-							-->
 							<tr>
 								<td>FL55</td>
 								<td><span id='FL55'></span> m</td>
@@ -488,10 +487,12 @@
 								<td>FL75</td>
 								<td><span id='FL75'></span> m</td>
 							</tr>
+							<!--
 							<tr>
 								<td>FL115</td>
 								<td><span id='FL115'></span> m</td>
 							</tr>
+							-->
 							</tbody>
 						</table>
 					</div>
