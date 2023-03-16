@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Dev briefing LFQO</title>
+	<title>Briefing Cambrai Planeur Aéroclub</title>
 
 	<meta name="description" content="Une collecte automatique de données météo et infos aeronautiques, extrait de ce qu'on peut trouver sur https://www.volavoile.net/index.php?showtopic=12194 et adapté pour Issoudun LFEK.">
 	<meta name="author" content="Marcos Ossedat, Baptiste DESPREZ, BFE, Billy, CPT, marc Terrier ...">
@@ -46,10 +46,12 @@
 				// en créant des secteurs d'un nombre maximum de 12 aérodromes, on arrive à nos fins.
 				// Ajoutez autant de secteurs que besoin.
 				var listeAeros = [
-					{ nom: 'Proche LFQO',
-					  liste: ['LFQO','LFQT','LFQQ','LFQN','LFQL','LFAV','LFQD','LFQS','LFQJ']},
-					{ nom: 'Au sud de LFQO',
-					  liste: ['LFAQ','LFAY','LFYG','LFAG','LFOW','LFOI','LFJS','LFAD']},
+					{ nom: 'Proches de LFYG',
+					  liste: ['LFYG','LFAQ','LFOW','LFAY','LFOI','LFQL','LFAV','LFQD','LFQS','LFQJ']},
+					{ nom: 'Au sud de LFYG',
+					  liste: ['LFAG','LFJS','LFAD']},
+					{ nom: 'Au nord de LFYG',
+					  liste: ['LFQO','LFQT','LFQQ','LFQN']},  
 		
 				];
 				// liste des notams de FIR à afficher
@@ -163,7 +165,7 @@
 							setInterval(update, 1000);
 						});
 					</script>
-					<h2></br>Briefing Lille-Planeurs</br></br></h2>
+					<h2></br>Briefing Cambrai Planeur Aéroclub</br></br></h2>
 					<h3>METEO    &nbsp;&nbsp;&amp;&nbsp;&nbsp;  Informations Aéronautiques</h3>
 					<br>
 					<h3 id="dateTitleDay"></br></h3>
@@ -187,27 +189,28 @@
 			</section>
 			<section>
 				<h4>Phénomènes dangereux à surveiller</h4>
-     			<iframe src="https://vigilance.meteofrance.fr/fr/widget-vigilance/vigilance"  width="302" height="122" frameborder="0">
-				</iframe>
+     			<!--
+     			<iframe src="http://www.vigimeteo.com/" width="95%" height="700"><p>Your browser does not support iframes.</p></iframe>
+     			-->
+     			<!--
+     			<iframe src="https://vigilance.meteofrance.fr/" width="95%" height="700"><p>Your browser does not support iframes.</p></iframe>
+     			-->
+     			<iframe src="https://vigilance.meteofrance.fr/fr/widget-vigilance/vigilance" width="302" height="122" frameborder="0"><p>Your browser does not support iframes.</p></iframe>
 			</section>
 			<!-- Carte Géopotentiel et tourbillon à 500 Hpa -->
 			<section id="geopotSection"></section>
 			<script>
-				/*var geopotURL=[
+				var geopotURL=[
 					"https://static.meteoblue.com/pub/nems12/maps/00VHG50_012.jpg",
 					"https://static.meteoblue.com/pub/nems12/maps/00VHG50_036.jpg",
 					"https://static.meteoblue.com/pub/nems12/maps/00VHG50_060.jpg",
 					"https://static.meteoblue.com/pub/nems12/maps/00VHG50_084.jpg",
 					"https://static.meteoblue.com/pub/nems12/maps/00VHG50_108.jpg"
-					]; */
-				var geopotURL=[
-					"https://modeles16.meteociel.fr/modeles/wrfnmm-eur/nmm-21-12-0.png?16-10",
-					"https://modeles16.meteociel.fr/modeles/wrfnmm-eur/nmm-21-18-0.png?16"
 					];
 				function geopotSuccessCallback() {
 						for (var i=0;i<geopotURL.length;i++){
 							$structure = '<section>'
-										+ '<h4>"Géopotentiel et température à 500mb "</h4>'
+										+ '<h4>"Géopotentiel et tourbillon relatif à 500mb "</h4>'
 										+ '<img src='+geopotURL[i]+' style="height:640px;">'
 										+ '</section>';
 							$('#geopotSection').append($structure);
@@ -218,6 +221,17 @@
 					ajaxAciFrontApiCallWithCallback(geopotSuccessCallback, geopotFailureCallback);
 				});
 			</script>
+			<!--
+			<section>
+          		<h4>Géopotentielle à 500mb aujourd'hui</h4>
+         		 <img src="https://static.meteoblue.com/pub/nems12/maps/00VHG50_012.jpg" style="height:620px;">
+        	
+        	</section>
+			<section>
+          		<h4>Géopotentielle à 500mb demain</h4>
+          		<img src="https://static.meteoblue.com/pub/nems12/maps/00VHG50_036.jpg" style="height:620px;">
+        	</section>
+			-->
 			<!-- CARTE CHAMP DE PRESSION ET FRONTS -->
 			<section id="frontSection">
 				<script>
@@ -265,12 +279,18 @@
         	    <!--<iframe src="http://data.meteo-villes.com/pluie.php?zoom=7&lat=50.6&lon=3.0" width="845" height="615"></iframe>-->
         			<!--<iframe src="http://www.meteo60.fr/radars-precipitations-pluie-france.php"></iframe>-->
         			
-      		</section>
+      </section>
 			
 			<!-- SONDAGES METEOCIEL AROME -->
 			<!-- échéance : 6h après le run AROME -->
 			<!-- Le modèle AROME est initialisé quatre fois par jour : run 00z – run 06z – run 12z – run 18z -->
 			<section>
+			
+			<section>
+				<h4>Sondage modèle Arome - Météociel / Cambrai</h4>
+				<iframe scrolling="auto" src="https://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=6&map=1&wrf=0&region=&type=1&lat=50.141&lon=3.264" width="1024" height="768"></iframe>
+			</section>
+			
 			<section>
 				<h4>Sondage modèle Arome - Météociel / Lille</h4>
 				<iframe scrolling="auto" src="https://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=6&map=1&wrf=0&region=&type=1&lat=50.687&lon=3.075" width="1024" height="768"></iframe>
@@ -279,11 +299,6 @@
 			<section>
 				<h4>Sondage modèle Arome - Météociel / Amiens</h4>
 				<iframe scrolling="auto" src="https://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=6&map=1&wrf=0&region=&type=1&lat=49.872&lon=2.388" width="1024" height="768"></iframe>
-			</section>
-		
-			<section>
-				<h4>Sondage modèle Arome - Météociel / Tielt (B)</h4>
-				<iframe scrolling="auto" src="https://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=6&map=1&wrf=0&region=&type=1&lat=51.001&lon=3.332" width="1024" height="768"></iframe>
 			</section>
 		
 			<section>
@@ -305,7 +320,7 @@
 			<section>
 				<h4>Vents</h4>
 				<!--<iframe  src="https://www.ventusky.com/?p=50.51;3.05;6&l=wind-900hpa" height="640" width="1200"></iframe>-->
-				<iframe src="https://www.ventusky.com/?p=50.6,3.05,5&l=wind-900hpa" width="900" height="600" frameborder="0" scrolling="no" class="border_rounded"></iframe>
+				<iframe src="https://www.ventusky.com/?p=50.14,3.26,5&l=wind-900hpa" width="900" height="600" frameborder="0" scrolling="no" class="border_rounded"></iframe>
 			</section>
 
 			<!-- METAR et TAF -->
@@ -359,7 +374,7 @@
 						}
 					}
 					$(document).ready(function() {
-						lireMetar(['LFQQ'], aciQnhCallback); // reference QNH du jour = Lille
+						lireMetar(['LFAQ'], aciQnhCallback); // reference QNH du jour = Albert-Bray
 						lireMetar(['LFQQ','LFAC','LFAQ'], aciTafMetarCallback, tafMetarFailureCallback);
 						lireTaf(['LFQQ','LFAQ'], aciTafMetarCallback, tafMetarFailureCallback);
 					});
@@ -381,9 +396,8 @@
 		<!-- Espaces aériens belges   -->
 			<section>
 				<h4>Espaces aériens belges</h4>
-				<!-- <iframe src="https://www.lvzc.be/index.php/secretariaat/luchtruim/lfa-golf-status" height="640" width="1200"></iframe> -->
-				<!--<iframe src="https://www.lvzc.be/index.php/luchtruim/lfa-golf-status" referrerpolicy="unsafe-url" height="640" width="1200"></iframe>-->
-				<iframe src="https://www.lvzc.be/lfamoduleJ.php" allow height="640" width="1200"></iframe>
+				<!--	<iframe src="https://www.lvzc.be/index.php/secretariaat/luchtruim/lfa-golf-status" height="640" width="1200"></iframe> -->
+				<iframe src="https://www.lvzc.be/index.php/luchtruim/lfa-golf-status" height="640" width="1200"></iframe>
 			</section>
 
 		<!-- un tableau des FL du jour en fonction du QNH, et en dessous la page que j'utilise pour determiner le qnh du jour, les heures de coucher du soleil etc etc -->
@@ -427,7 +441,7 @@
 							$("#FL115").text(Math.round(fl));
 							*/
 						});
-						var rep=getSunsetToday(50.3,3.06); // appel pour Lille
+						var rep=getSunsetToday(50.14,3.26); // appel pour Cambrai
 						var sunset=""+rep.heureSunset + ":" + str_pad(rep.minuteSunset) + "";
 						$("#sunset").val(sunset);
 						$("#sunset").trigger("change");
@@ -444,7 +458,7 @@
 				<h4>Table des Niveaux de Vol</h4>
 				<div class="div_qnh">
 					<div style="display:block;">
-						<p>QNH LFQQ : <input type="text" id="qnh" class="big_input_qnh"/></p>
+						<p>QNH LFAQ : <input type="text" id="qnh" class="big_input_qnh"/></p>
 						<p>Delta : <span id="delta"></span> m</p>
 						<table class="alti">
 							<tbody class="centre">
@@ -490,8 +504,8 @@
 					</div>
 				</div>
 			</section>
-			
-			<!-- NOTAM AERO 
+
+			<!-- NOTAM AERO -->
 			<script>
 				var listeInputAeros = function(listeAerosRegionale){
 					var ll = '';
@@ -543,7 +557,7 @@
 				sectionNotam(listeAeros);
 			</script>
 
-			<!-- NOTAM FIR 
+			<!-- NOTAM FIR -->
 			<script>
 				var listeInputFIR = function(listeFIRRegionale){
 					var ll = '';
@@ -592,11 +606,9 @@
 				}
 				sectionNotamFIR(listeFIR);
 			</script>
-			-->
-			<section>
-				<h4>Notam</h4>
-				<iframe src="https://notaminfo.com/francemap" height="680" width="900"></iframe>
-			</section>
+
+			
+
 			<section>
 				<h4>Liens météo</h4>
 				<ul>
